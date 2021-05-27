@@ -1,7 +1,7 @@
 /*
     Autore: Simone Di Berardino;
     Data: 18/05/2021;
-    Oggetto: Celebre versione del gioco "Tic Tac Toe", riprodotta in Java.
+    Oggetto: Versione del celebre gioco "Tic Tac Toe", riprodotta in Java.
 */
 
 package main;
