@@ -152,6 +152,7 @@ public class TicTacToe {
     static void aggiungiBottoni(){
         creaGriglia();
         creaBottoneRestart();
+        creaBottoneInfo();
         bottoneDifficoltà();
         creaBottoneUscita();
     }
@@ -184,6 +185,16 @@ public class TicTacToe {
             int risposta = JOptionPane.showConfirmDialog(null, "Vuoi davvero ricominciare la partita?");
             if(risposta == JOptionPane.YES_OPTION)
                 riavviaPartita();
+        });
+
+        box_funcs.add(restart);
+    }
+
+    static void creaBottoneInfo(){
+        restart = new JButton("Come si gioca?");
+
+        restart.addActionListener(e -> {
+            comeSiGioca();
         });
 
         box_funcs.add(restart);
@@ -260,6 +271,10 @@ public class TicTacToe {
         }
 
         riavviaPartita();
+    }
+
+    static void comeSiGioca(){
+        JOptionPane.showMessageDialog(null, "REGOLE DEL GIOCO\nA turno, i giocatori scelgono una cella vuota e vi disegnano il proprio simbolo.\nSi aggiudica il round il giocatore che riesce a disporre tre dei propri simboli in linea retta\norizzontale, verticale o diagonale. Vince chi raggiunge per primo il punteggio limite.");
     }
 
     static void riavviaPartita(){

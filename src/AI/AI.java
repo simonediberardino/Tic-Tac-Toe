@@ -89,11 +89,16 @@ public class AI extends Giocatore {
         for(int y = 0; y < GRID_SIZE; y++){
             int punteggio = 0;
 
+            // CALCOLA IL PUNTEGGIO, IL QUALE DIPENDE DAL CONTENUTO DI OGNI CELLA DEL RELATIVO TERZETTO
             for(int x = 0; x < GRID_SIZE; x++){
                 String segno = grid.button[x][y].getText();
                 punteggio = punteggio(punteggio, segno);
             }
 
+            /*
+                ASSEGNA IL PUNTEGGIO CALCOLATO AD OGNI BOTTONE DELLA RELATIVA VERTICALE
+                E LO AGGIUNGE ALL'ARRAYLIST NEL CASO IN CUI IL BOTTONE SIA DISPONIBILE;
+            */
             for(int x = 0; x < GRID_SIZE; x++)
                 if(disponibile(grid.button[x][y]))
                     verticali.add(new Scelta(grid.button[x][y], punteggio));
@@ -108,11 +113,17 @@ public class AI extends Giocatore {
         for(int x = 0; x < GRID_SIZE; x++){
             int punteggio = 0;
 
+
+            // CALCOLA IL PUNTEGGIO, IL QUALE DIPENDE DAL CONTENUTO DI OGNI CELLA DEL RELATIVO TERZETTO
             for(int y = 0; y < GRID_SIZE; y++){
                 String segno = grid.button[x][y].getText();
                 punteggio = punteggio(punteggio, segno);
             }
 
+            /*
+                ASSEGNA IL PUNTEGGIO CALCOLATO AD OGNI BOTTONE DELLA RELATIVA ORIZZONTALE
+                E LO AGGIUNGE ALL'ARRAYLIST NEL CASO IN CUI IL BOTTONE SIA DISPONIBILE;
+            */
             for(int y = 0; y < GRID_SIZE; y++)
                 if(disponibile(grid.button[x][y]))
                     verticali.add(new Scelta(grid.button[x][y], punteggio));
@@ -126,11 +137,16 @@ public class AI extends Giocatore {
 
         int punteggio = 0;
 
+        // CALCOLA IL PUNTEGGIO, IL QUALE DIPENDE DAL CONTENUTO DI OGNI CELLA DELLA DIAGONALE
         for(int x = 0, y = 0; x < GRID_SIZE; x++, y++){
             String segno = grid.button[x][y].getText();
             punteggio = punteggio(punteggio, segno);
         }
 
+        /*
+            ASSEGNA IL PUNTEGGIO CALCOLATO AD OGNI BOTTONE DELLA DIAGONALE
+            E LO AGGIUNGE ALL'ARRAYLIST NEL CASO IN CUI IL BOTTONE SIA DISPONIBILE;
+        */
         for(int x = 0, y = 0; x < GRID_SIZE; x++, y++)
             if(disponibile(grid.button[x][y]))
                 diagonale.add(new Scelta(grid.button[x][y], punteggio));
@@ -143,11 +159,16 @@ public class AI extends Giocatore {
 
         int punteggio = 0;
 
+        // CALCOLA IL PUNTEGGIO, IL QUALE DIPENDE DAL CONTENUTO DI OGNI CELLA DELLA DIAGONALE
         for(int x = GRID_SIZE - 1, y = 0; x >= 0; x--, y++){
             String segno = grid.button[x][y].getText();
             punteggio = punteggio(punteggio, segno);
         }
 
+        /*
+            ASSEGNA IL PUNTEGGIO CALCOLATO AD OGNI BOTTONE DELLA DIAGONALE
+            E LO AGGIUNGE ALL'ARRAYLIST NEL CASO IN CUI IL BOTTONE SIA DISPONIBILE;
+        */
         for(int x = GRID_SIZE - 1, y = 0; x >= 0; x--, y++)
             if(disponibile(grid.button[x][y]))
                 diagonaleInv.add(new Scelta(grid.button[x][y], punteggio));
@@ -155,6 +176,7 @@ public class AI extends Giocatore {
         return diagonaleInv;
     }
 
+    /* RICERCA DELL'OGGETTO CON IL PUNTEGGIO MASSIMO; */
     public static Scelta max(Set<Scelta> scelte){
         Scelta migliore = null;
 
@@ -186,6 +208,8 @@ public class AI extends Giocatore {
 
         public Scelta(JButton button, Integer punteggio){
             this.button = button;
+
+            // Il punteggio viene trasformato in un intero positivo laddove sia negativo;
             this.punteggio = Math.abs(punteggio);
         }
 
